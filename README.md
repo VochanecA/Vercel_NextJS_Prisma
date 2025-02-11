@@ -156,4 +156,4 @@ npx prisma migrate deploy
 
  ## WIP
  - [x] update user context-> next-auth
- - [ ] update 3rd oauth login -> invite/newUser logic 
+ - [ ] update 3rd oauth login -> invite/newUser logic # Vercel_NextJS_Prisma

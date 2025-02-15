@@ -47,7 +47,8 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <CircleIcon className="h-6 w-6 text-orange-500" />
-          <span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white">Alen</span>
+          <span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white">Obstacle Monitor <span style={{ display: 'inline-block', transform: 'rotate(5deg)', backgroundColor: 'red', color: 'white', borderRadius: '50px', padding: '5px 10px' }}>by Alen</span></span>
+
         </Link>
         <div className="hidden md:flex items-center space-x-4">
           <Link
@@ -154,7 +155,7 @@ function Header() {
               onClick={toggleTheme}
               variant="ghost"
               size="icon"
-              className="hover:bg-gray-800 text-white w-full"
+              className="hover:bg-gray-200 text-white w-full"
             >
               {isDarkMode ? (
                 <Sun className="h-[1.2rem] w-[1.2rem] text-orange-500 transition-all" />

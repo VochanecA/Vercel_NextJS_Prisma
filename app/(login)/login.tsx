@@ -1,3 +1,4 @@
+// app/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -11,6 +12,7 @@ import { oauthSignIn, signIn, signUp } from "./actions";
 import { ActionState } from "@/lib/auth/middleware";
 import { SubmitButton } from "@/components/SubmitButton";
 import { useTranslations } from "next-intl";
+import { useState, useEffect } from "react";
 
 export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
   const searchParams = useSearchParams();
@@ -25,12 +27,12 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
   const t = useTranslations(`Auth.${mode}`);
 
   return (
-    <div className="min-h-[100dvh] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="min-h-[100dvh] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 dark:text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <CircleIcon className="h-12 w-12 text-orange-500" />
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
           {t('title')}
         </h2>
       </div>
@@ -43,7 +45,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
           <div>
             <Label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               {t('email')}
             </Label>
@@ -56,7 +58,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
                 defaultValue={state.email}
                 required
                 maxLength={50}
-                className="appearance-none rounded-full relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-full relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 text-gray-900 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm dark:bg-gray-800"
                 placeholder={t('emailPlaceholder')}
               />
             </div>
@@ -65,7 +67,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
           <div>
             <Label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               {t('password')}
             </Label>
@@ -81,7 +83,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
                 required
                 minLength={8}
                 maxLength={100}
-                className="appearance-none rounded-full relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-full relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 text-gray-900 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm dark:bg-gray-800"
                 placeholder={t('passwordPlaceholder')}
               />
             </div>
@@ -112,10 +114,10 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-gray-300 dark:border-gray-700" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-50 text-gray-500">
+              <span className="px-2 bg-gray-50 text-gray-500 dark:bg-gray-900 dark:text-gray-400">
                 {t('orContinueWith')}
               </span>
             </div>
@@ -126,7 +128,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
               href={`${mode === "signin" ? "/sign-up" : "/sign-in"}${
                 redirect ? `?redirect=${redirect}` : ""
               }${priceId ? `&priceId=${priceId}` : ""}`}
-              className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+              className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-full shadow-sm text-sm font-medium text-gray-700 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             >
               {mode === "signin" ? (
                 <>
@@ -141,10 +143,10 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
           </div>
           <div className="relative mt-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-gray-300 dark:border-gray-700" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-50 text-gray-500">
+              <span className="px-2 bg-gray-50 text-gray-500 dark:bg-gray-900 dark:text-gray-400">
                 {t('orContinueWith')}
               </span>
             </div>
@@ -153,7 +155,7 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
             <form
               action={oauthSignIn}
             >
-              <SubmitButton className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+              <SubmitButton className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-full shadow-sm text-sm font-medium text-gray-700 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
               Google
               </SubmitButton>
             </form>
@@ -161,5 +163,43 @@ export function Login({ mode = "signin" }: { mode?: "signin" | "signup" }) {
         </div>
       </div>
     </div>
+  );
+}
+
+// ThemeToggle component
+export function ThemeToggle() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    // On mount, read the theme from localStorage and apply it to the HTML tag
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    // When darkMode changes, update the HTML tag and localStorage
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <button onClick={toggleDarkMode}>
+      {darkMode ? "Light Mode" : "Dark Mode"}
+    </button>
   );
 }
